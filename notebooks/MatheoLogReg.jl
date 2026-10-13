@@ -24,7 +24,7 @@ On veut estimer le vecteur $a=(a_0,\dots,a_n)$ par le maximum de vraisemblance.
 #%% md id=60565f
 @md"""
 # Plan du programme
-
+On s'inspire du [code python d'une régression logistique](https://www.kaggle.com/code/fareselmenshawii/logistic-regression-from-scratch#Model).   
 Fonction :   
 1)LogReg(a) regression logistique avec vecteur a fixée   
 2)Fit(DataFrame ou un duo var explicative et var a expliquer,LogReg)->fonction LogReg avec vecteur a optimisé par max vraisemblance    
@@ -40,7 +40,32 @@ Calcul du maximum de vraisemblance (descente de gradient)
 """
 
 #%% code id=0408fc
+using MLJ
+a
 
+#%% code id=56548f
+#Fonction sigmoïde
+
+function sigm(a::AbstractFloat)
+    1/(1+exp(-z))
+end
+
+function sigm(a::AbstractVector)
+    sigm.(a)
+end
+
+#%% code id=ffed90
+abstract type AbstractModel end
+
+mutable struct LogReg <: AbstractModel
+    a::AbstractVector
+end
+
+# ╔═╡ Slate.env · notebook packages (auto-maintained — manage via the package panel)
+#   GLMakie 0.13.15 e9467ef8-e4e7-5192-8a1a-b1aee30e663a
+#   MLJ 0.23.3 add582a8-e3ab-11e8-2d5e-e98b27df1bc7
+#   Plots 1.41.7 91a5bcdd-55d7-5caf-9e0b-520d859cae80
+# ╚═╡
 # ╔═╡ Slate.config · per-notebook settings (Settings panel)
 #   docid = 8e760128-3fa4-4eb7-9dee-473d59eaad61
 # ╚═╡
